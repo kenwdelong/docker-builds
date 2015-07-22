@@ -4,7 +4,7 @@ MAINTAINER kenwdelong
 
 # Version
 ENV MAVEN_VERSION=3.3.3 \
-    JENKINS_VERSION=1.621 \
+    JENKINS_VERSION=1.620 \
     MAVEN_HOME=/usr/local/maven \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
