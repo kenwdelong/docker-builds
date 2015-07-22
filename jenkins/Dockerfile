@@ -4,7 +4,7 @@ MAINTAINER kenwdelong
 
 # Version
 ENV MAVEN_VERSION=3.3.3 \
-    JENKINS_VERSION=1.620 \
+    JENKINS_VERSION=1.621 \
     MAVEN_HOME=/usr/local/maven \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
@@ -44,4 +44,5 @@ ENV PATH $MAVEN_HOME/bin:$PATH
 
 EXPOSE 8080
 
-#CMD java -jar -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE $JENKINS_INSTALL/jenkins.war
+CMD java -jar -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE $JENKINS_INSTALL/jenkins.war
+
