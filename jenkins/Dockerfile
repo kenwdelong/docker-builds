@@ -4,7 +4,7 @@ MAINTAINER kenwdelong
 
 # Version
 ENV MAVEN_VERSION=3.3.3 \
-    JENKINS_VERSION=1.620 \
+    JENKINS_VERSION=1.621 \
     MAVEN_HOME=/usr/local/maven \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
@@ -19,8 +19,8 @@ RUN mkdir -p $MAVEN_HOME &&\
     tar -xf "$MAVEN_TMP_FILE" --directory="$MAVEN_HOME" --strip-components 1 &&\
     rm $MAVEN_TMP_FILE
 
-# Install EPEL-RELEASE
-RUN yum -y install epel-release && yum clean all
+# Install EPEL-RELEASE, GIT
+RUN yum -y install git epel-release && yum clean all
 
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
 RUN yum -y install ansible &&\
