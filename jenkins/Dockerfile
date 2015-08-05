@@ -48,5 +48,6 @@ ENV PATH $MAVEN_HOME/bin:$PATH
 
 EXPOSE 8080
 
+USER 201
 CMD java -jar -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE $JENKINS_INSTALL/jenkins.war
 
