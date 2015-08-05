@@ -4,13 +4,15 @@ MAINTAINER kenwdelong
 
 # Version
 ENV MAVEN_VERSION=3.3.3 \
-    JENKINS_VERSION=1.621 \
     MAVEN_HOME=/usr/local/maven \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
     GET_PIP_FILE=/tmp/get-pip.py
+
+# Timezone
+RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
     
 # Install Maven
 RUN mkdir -p $MAVEN_HOME &&\
@@ -31,6 +33,8 @@ RUN yum -y install ansible &&\
     pip install boto &&\
     rm -f $GET_PIP_FILE &&\
     rm -rf /tmp/pip_build_root
+
+ENV JENKINS_VERSION=1.623
 
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
