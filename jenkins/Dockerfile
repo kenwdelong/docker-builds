@@ -49,6 +49,7 @@ ENV PATH $MAVEN_HOME/bin:$PATH
 EXPOSE 8080
 
 RUN useradd -r -u 201 -m -c "jenkins role account" -d /home/jenkins -s /bin/false jenkins
+RUN chown jenkins $JENKINS_HOME
 USER jenkins
 
 CMD java -jar -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE $JENKINS_INSTALL/jenkins.war
