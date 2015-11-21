@@ -1,3 +1,3 @@
 FROM cpuguy83/nagios
 MAINTAINER kenwdelong@yahoo.com
-ENV NAGIOS_VERSION 3.5.1
+RUN sed -i 's,UTC,America/Los_Angeles,' /etc/apache2/conf.d/nagios.conf
