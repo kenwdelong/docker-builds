@@ -1,9 +1,10 @@
-FROM kenwdelong/java:8u51
+#FROM kenwdelong/java:8u51
+FROM kenwdelong/java:latest
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
 # Version
-ENV MAVEN_VERSION=3.3.3 \
+ENV MAVEN_VERSION=3.3.9 \
     MAVEN_HOME=/usr/local/maven \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
@@ -34,7 +35,7 @@ RUN yum -y install ansible &&\
     rm -f $GET_PIP_FILE &&\
     rm -rf /tmp/pip_build_root
 
-ENV JENKINS_VERSION=1.623
+ENV JENKINS_VERSION=1.641
 
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
