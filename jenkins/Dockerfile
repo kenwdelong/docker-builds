@@ -1,5 +1,4 @@
-#FROM kenwdelong/java:8u51
-FROM kenwdelong/java:latest
+FROM kenwdelong/java:java-8u66
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
