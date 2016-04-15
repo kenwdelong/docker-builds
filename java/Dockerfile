@@ -8,7 +8,7 @@ ENV JAVA_VERSION=8u66 \
     TMP_DIR=/tmp/java \
     TMP_FILE=$TMP_DIR/java.tar.gz
 
-RUN yum -y install wget tar && \
+RUN yum -y install wget tar sudo && \
     yum clean all && \
     mkdir -p $JAVA_HOME && \
 	mkdir -p $TMP_DIR && \
