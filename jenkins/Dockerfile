@@ -22,24 +22,24 @@ RUN mkdir -p $MAVEN_HOME &&\
     rm $MAVEN_TMP_FILE
 
 # Install EPEL-RELEASE, GIT
-RUN yum -y install git epel-release && yum clean all
+RUN yum -y install git epel-release gcc python-devel && yum clean all
 
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
-RUN yum -y install ansible &&\
-    yum clean all &&\
-    curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
+RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     python $GET_PIP_FILE &&\
+    pip install --upgrade ansible &&\
     pip install awscli &&\
     pip install boto &&\
     rm -f $GET_PIP_FILE &&\
     rm -rf /tmp/pip_build_root
 
-ENV JENKINS_VERSION=1.641
+
+ENV JENKINS_VERSION=1.651.1
 
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
     mkdir -p $JENKINS_INSTALL &&\
-    wget --quiet --output-document=$JENKINS_INSTALL/jenkins.war "http://mirrors.jenkins-ci.org/war/$JENKINS_VERSION/jenkins.war" &&\
+    wget --quiet --output-document=$JENKINS_INSTALL/jenkins.war "http://mirrors.jenkins-ci.org/war-stable/$JENKINS_VERSION/jenkins.war" &&\
     chmod 0644 $JENKINS_INSTALL/jenkins.war
 
 # Jenkins' home is in /jenkins
