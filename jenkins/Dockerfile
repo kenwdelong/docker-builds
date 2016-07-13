@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-8u66
+FROM kenwdelong/java:java-8u92
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
@@ -34,7 +34,7 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     rm -rf /tmp/pip_build_root
 
 
-ENV JENKINS_VERSION=1.651.1
+ENV JENKINS_VERSION=2.7.1
 
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
