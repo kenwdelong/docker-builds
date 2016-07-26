@@ -22,7 +22,7 @@ RUN mkdir -p $MAVEN_HOME &&\
     rm $MAVEN_TMP_FILE
 
 # Install EPEL-RELEASE, GIT
-RUN yum -y install git epel-release gcc python-devel && yum clean all
+RUN yum -y install git epel-release gcc python-devel libffi-devel openssl-devel && yum clean all
 
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
