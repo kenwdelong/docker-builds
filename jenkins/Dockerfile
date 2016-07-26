@@ -5,11 +5,15 @@ MAINTAINER kenwdelong
 # Version
 ENV MAVEN_VERSION=3.3.9 \
     MAVEN_HOME=/usr/local/maven \
+    MAVEN_TMP_FILE=/tmp/maven.tar.gz \
+    JENKINS_VERSION=2.7.1 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
-    MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    GET_PIP_FILE=/tmp/get-pip.py
+    GET_PIP_FILE=/tmp/get-pip.py \
+    J2OBJC_VERSION=1.1 \
+    J2OBJC_INSTALL_DIR=/opt \
+    J2OBJC_TMP_FILE=/tmp/j2objc.zip
 
 # Timezone
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
@@ -22,7 +26,7 @@ RUN mkdir -p $MAVEN_HOME &&\
     rm $MAVEN_TMP_FILE
 
 # Install EPEL-RELEASE, GIT
-RUN yum -y install git epel-release gcc python-devel libffi-devel openssl-devel && yum clean all
+RUN yum -y install git epel-release gcc python-devel libffi-devel openssl-devel unzip && yum clean all
 
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
@@ -34,7 +38,6 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     rm -rf /tmp/pip_build_root
 
 
-ENV JENKINS_VERSION=2.7.1
 
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
@@ -43,6 +46,14 @@ RUN mkdir -p $JENKINS_HOME &&\
     chmod 0644 $JENKINS_INSTALL/jenkins.war
 
 # Jenkins' home is in /jenkins
+
+
+# Install j2objc
+RUN wget --quiet --output-document=$J2OBJC_TMP_FILE "https://github.com/google/j2objc/releases/download/${J2OBJC_VERSION}/j2objc-${J2OBJC_VERSION}.zip" &&\
+    unzip "$J2OBJC_TMP_FILE" -d "$J2OBJC_INSTALL_DIR" &&\ 
+    ln -s "${J2OBJC_INSTALL_DIR}/j2objc-${J2OBJC_VERSION}" "${J2OBJC_INSTALL_DIR}/j2objc" &&\ 
+    rm $J2OBJC_TMP_FILE
+
 
 ENV PATH $MAVEN_HOME/bin:$PATH
 
