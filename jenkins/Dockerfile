@@ -48,10 +48,12 @@ RUN mkdir -p $JENKINS_HOME &&\
 # Jenkins' home is in /jenkins
 
 
-# Install j2objc
+# Install j2objc. Since we are only translating, we don't need the mac libs.  Saves 500MB.
 RUN wget --quiet --output-document=$J2OBJC_TMP_FILE "https://github.com/google/j2objc/releases/download/${J2OBJC_VERSION}/j2objc-${J2OBJC_VERSION}.zip" &&\
     unzip "$J2OBJC_TMP_FILE" -d "$J2OBJC_INSTALL_DIR" &&\ 
-    ln -s "${J2OBJC_INSTALL_DIR}/j2objc-${J2OBJC_VERSION}" "${J2OBJC_INSTALL_DIR}/j2objc" &&\ 
+    ln -s "${J2OBJC_INSTALL_DIR}/j2objc-${J2OBJC_VERSION}" "${J2OBJC_INSTALL_DIR}/j2objc" &&\
+    rm -rf ${J2OBJC_INSTALL_DIR}/j2objc/lib/maxosx &&\
+    rm -rf ${J2OBJC_INSTALL_DIR}/j2objc/lib/appletvos &&\
     rm $J2OBJC_TMP_FILE
 
 
