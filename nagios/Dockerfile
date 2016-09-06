@@ -1,7 +1,9 @@
 FROM jasonrivers/nagios:4.2.0
 MAINTAINER kenwdelong@yahoo.com
-RUN sed -i 's,UTC,America/Los_Angeles,' /etc/apache2/conf.d/nagios.conf
-RUN wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py    &&\
-    python get-pip.py                                                 &&\
-    rm get-pip.py                                                     &&\
-    pip install boto tornado pyopenssl ndg-httpsclient pyasn1 urllib3
+RUN apt-get --yes install python &&\
+    apt-get clean all
+RUN echo 'SetEnv TZ "America/Los_Angeles"' >> /etc/apache2/conf-enabled/nagios.conf
+RUN wget https://bootstrap.pypa.io/get-pip.py    &&\
+    python get-pip.py                            &&\
+    rm get-pip.py                                &&\
+    pip install boto tornado
