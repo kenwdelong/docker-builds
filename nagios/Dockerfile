@@ -1,4 +1,4 @@
-FROM cpuguy83/nagios
+FROM jasonrivers/nagios:4.2.0
 MAINTAINER kenwdelong@yahoo.com
 RUN sed -i 's,UTC,America/Los_Angeles,' /etc/apache2/conf.d/nagios.conf
 RUN wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py    &&\
