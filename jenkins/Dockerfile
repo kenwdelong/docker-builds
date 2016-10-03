@@ -6,7 +6,7 @@ MAINTAINER kenwdelong
 ENV MAVEN_VERSION=3.3.9 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    JENKINS_VERSION=2.7.1 \
+    JENKINS_VERSION=2.7.4 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
