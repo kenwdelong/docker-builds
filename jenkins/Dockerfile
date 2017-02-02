@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-8u111
+FROM kenwdelong/java:java-8u121
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
@@ -6,12 +6,12 @@ MAINTAINER kenwdelong
 ENV MAVEN_VERSION=3.3.9 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    JENKINS_VERSION=2.19.2 \
+    JENKINS_VERSION=2.32.2 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
     GET_PIP_FILE=/tmp/get-pip.py \
-    J2OBJC_VERSION=1.1 \
+    J2OBJC_VERSION=1.3.1 \
     J2OBJC_INSTALL_DIR=/opt \
     J2OBJC_TMP_FILE=/tmp/j2objc.zip
 
