@@ -2,7 +2,7 @@ FROM krallin/centos-tini:centos7
 MAINTAINER kenwdelong
 # Based on cooniur/java
 
-ENV JAVA_VERSION=8u121 \
+ENV JAVA_VERSION=8u131 \
     JAVA_LONG_VERSION=8u131-b11 \
     JAVA_HOME=/usr/local/java \
     JAVA_KEY=d54c1d3a095b4ff2b6607d096fa80163 \
@@ -19,6 +19,5 @@ RUN yum -y install wget tar sudo && \
         "http://download.oracle.com/otn-pub/java/jdk/$JAVA_LONG_VERSION/$JAVA_KEY/jdk-$JAVA_VERSION-linux-x64.tar.gz" && \
     tar -xf "$TMP_FILE" --directory="$JAVA_HOME" --strip-components 1 && \
     rm "$TMP_FILE"
-
 # If I set the path up above with the other ENV vars, it doesn't work.
 ENV PATH $JAVA_HOME/bin:$PATH
