@@ -3,10 +3,10 @@ MAINTAINER kenwdelong
 # Inspired by cooniur
 
 # Version
-ENV MAVEN_VERSION=3.3.9 \
+ENV MAVEN_VERSION=3.5.0 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    JENKINS_VERSION=2.46.2 \
+    JENKINS_VERSION=2.60.2 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
