@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-8u131
+FROM kenwdelong/java:java-8u144
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
