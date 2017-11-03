@@ -3,7 +3,7 @@ MAINTAINER kenwdelong
 # Inspired by cooniur
 
 # Version
-ENV MAVEN_VERSION=3.5.0 \
+ENV MAVEN_VERSION=3.5.2 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
     JENKINS_VERSION=2.73.2 \
