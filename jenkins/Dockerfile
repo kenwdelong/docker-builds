@@ -6,7 +6,7 @@ MAINTAINER kenwdelong
 ENV MAVEN_VERSION=3.5.0 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    JENKINS_VERSION=2.60.2 \
+    JENKINS_VERSION=2.73.2 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
@@ -55,6 +55,11 @@ RUN wget --quiet --output-document=$J2OBJC_TMP_FILE "https://github.com/google/j
     rm -rf ${J2OBJC_INSTALL_DIR}/j2objc/lib/maxosx &&\
     rm -rf ${J2OBJC_INSTALL_DIR}/j2objc/lib/appletvos &&\
     rm $J2OBJC_TMP_FILE
+
+
+# Install NodeJS
+RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -  &&\
+    sudo yum -y install nodejs
 
 
 ENV PATH $MAVEN_HOME/bin:$PATH
