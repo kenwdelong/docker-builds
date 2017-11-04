@@ -58,9 +58,9 @@ RUN wget --quiet --output-document=$J2OBJC_TMP_FILE "https://github.com/google/j
 
 
 # Install NodeJS
-RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -  &&\
-    sudo yum -y install nodejs
-
+#RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -  &&\
+#    sudo yum -y install nodejs
+# We don't need to install node - the Jenkins Node Plugin handles it for us!
 
 ENV PATH $MAVEN_HOME/bin:$PATH
 
