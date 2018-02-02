@@ -2,10 +2,10 @@ FROM krallin/centos-tini:centos7
 MAINTAINER kenwdelong
 # Based on cooniur/java
 
-ENV JAVA_VERSION=8u151 \
-    JAVA_LONG_VERSION=8u151-b12 \
+ENV JAVA_VERSION=8u161 \
+    JAVA_LONG_VERSION=8u161-b12 \
     JAVA_HOME=/usr/local/java \
-    JAVA_KEY=e758a0de34e24606bca991d704f6dcbf \
+    JAVA_KEY=2f38c3b165be4555a1fa6e98c45e0808 \
     TMP_DIR=/tmp/java \
     TMP_FILE=$TMP_DIR/java.tar.gz
 
