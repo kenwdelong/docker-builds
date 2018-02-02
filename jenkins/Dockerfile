@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-8u151
+FROM kenwdelong/java:java-8u161
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
@@ -6,7 +6,7 @@ MAINTAINER kenwdelong
 ENV MAVEN_VERSION=3.5.2 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    JENKINS_VERSION=2.73.2 \
+    JENKINS_VERSION=2.89.32 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
