@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  connection: local
+  gather_facts: No
+  vars:
+    foo: bar
+    elb:
+      stuff:
+        QA: myVal
+    env: QA
+  roles:
+  tasks:
+    - debug: 
+        msg: This really works!
+
+
