@@ -1,13 +1,13 @@
-FROM kenwdelong/java:java-8u181
+FROM kenwdelong/java:java-10.0.2
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
 # Version
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
-ENV MAVEN_VERSION=3.5.4 \
+ENV MAVEN_VERSION=3.6.0 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    JENKINS_VERSION=2.121.2 \
+    JENKINS_VERSION=2.138.2 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
@@ -50,12 +50,13 @@ RUN mkdir -p $JENKINS_HOME &&\
 
 
 # Install j2objc. Since we are only translating, we don't need the mac libs.  Saves 500MB.
-RUN wget --quiet --output-document=$J2OBJC_TMP_FILE "https://github.com/google/j2objc/releases/download/${J2OBJC_VERSION}/j2objc-${J2OBJC_VERSION}.zip" &&\
-    unzip "$J2OBJC_TMP_FILE" -d "$J2OBJC_INSTALL_DIR" &&\ 
-    ln -s "${J2OBJC_INSTALL_DIR}/j2objc-${J2OBJC_VERSION}" "${J2OBJC_INSTALL_DIR}/j2objc" &&\
-    rm -rf ${J2OBJC_INSTALL_DIR}/j2objc/lib/maxosx &&\
-    rm -rf ${J2OBJC_INSTALL_DIR}/j2objc/lib/appletvos &&\
-    rm $J2OBJC_TMP_FILE
+#RUN wget --quiet --output-document=$J2OBJC_TMP_FILE "https://github.com/google/j2objc/releases/download/${J2OBJC_VERSION}/j2objc-${J2OBJC_VERSION}.zip" &&\
+#    unzip "$J2OBJC_TMP_FILE" -d "$J2OBJC_INSTALL_DIR" &&\ 
+#    ln -s "${J2OBJC_INSTALL_DIR}/j2objc-${J2OBJC_VERSION}" "${J2OBJC_INSTALL_DIR}/j2objc" &&\
+#    rm -rf ${J2OBJC_INSTALL_DIR}/j2objc/lib/maxosx &&\
+#    rm -rf ${J2OBJC_INSTALL_DIR}/j2objc/lib/appletvos &&\
+#    rm $J2OBJC_TMP_FILE
+# Take this out until we someday need to recompile weightlib. This will make the image way smaller
 
 
 # Install NodeJS
