@@ -2,10 +2,9 @@ FROM krallin/centos-tini:centos7
 MAINTAINER kenwdelong
 # Based on cooniur/java
 
-ENV JAVA_VERSION=8u181 \
-    JAVA_LONG_VERSION=8u181-b13 \
+ENV JAVA_VERSION=10.0.2 \
+	ZULU_VERSION=10.3+5 \
     JAVA_HOME=/usr/local/java \
-    JAVA_KEY=96a7b8442fe848ef90c96a2fad6ed6d1 \
     TMP_DIR=/tmp/java \
     TMP_FILE=$TMP_DIR/java.tar.gz
 
@@ -15,8 +14,7 @@ RUN yum -y install wget tar sudo && \
 	mkdir -p $TMP_DIR && \
     wget --quiet --output-document="$TMP_FILE" \
         --no-cookies --no-check-certificate \
-        --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-        "http://download.oracle.com/otn-pub/java/jdk/$JAVA_LONG_VERSION/$JAVA_KEY/jdk-$JAVA_VERSION-linux-x64.tar.gz" && \
+        "https://cdn.azul.com/zulu/bin/zulu${ZULU_VERSION}-jdk${JAVA_VERSION}-linux_x64.tar.gz" && \
     tar -xf "$TMP_FILE" --directory="$JAVA_HOME" --strip-components 1 && \
     rm "$TMP_FILE"
 # If I set the path up above with the other ENV vars, it doesn't work.
