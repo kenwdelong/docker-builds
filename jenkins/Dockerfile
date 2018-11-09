@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-10.0.2
+FROM kenwdelong/java:java-8u181
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
@@ -27,8 +27,7 @@ RUN mkdir -p $MAVEN_HOME &&\
     rm $MAVEN_TMP_FILE
 
 # Install EPEL-RELEASE, GIT
-# https://wiki.jenkins.io/display/JENKINS/Jenkins+got+java.awt.headless+problem - needed for OpenJDK 10
-RUN yum -y install git epel-release gcc python-devel libffi-devel openssl-devel unzip dejavu-sans-fonts fontconfig && yum clean all
+RUN yum -y install git epel-release gcc python-devel libffi-devel openssl-devel unzip && yum clean all
 
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
@@ -73,5 +72,4 @@ RUN useradd -r -u 201 -m -c "jenkins role account" -d /home/jenkins -s /bin/fals
 RUN chown jenkins $JENKINS_HOME
 USER jenkins
 
-# https://jenkins.io/blog/2018/06/17/running-jenkins-with-java10-11/
-CMD java --add-modules java.xml.bind -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE -jar $JENKINS_INSTALL/jenkins.war --enable-future-java --httpPort=8080
+CMD java -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE -jar $JENKINS_INSTALL/jenkins.war
