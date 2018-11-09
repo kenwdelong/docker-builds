@@ -72,5 +72,4 @@ RUN useradd -r -u 201 -m -c "jenkins role account" -d /home/jenkins -s /bin/fals
 RUN chown jenkins $JENKINS_HOME
 USER jenkins
 
-CMD java -jar -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE $JENKINS_INSTALL/jenkins.war
-
+CMD java --add-modules java.xml.bind -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE -jar $JENKINS_INSTALL/jenkins.war --enable-future-java --httpPort=8080 --prefix=/jenkins
