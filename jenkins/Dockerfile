@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-8u181
+FROM kenwdelong/java:java-8u202-zulu
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
