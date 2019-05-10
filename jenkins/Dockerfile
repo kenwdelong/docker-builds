@@ -1,13 +1,13 @@
-FROM kenwdelong/java:java-8u202-zulu
+FROM kenwdelong/java:java-8u212-zulu
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
 # Version
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
-ENV MAVEN_VERSION=3.6.0 \
+ENV MAVEN_VERSION=3.6.1 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    JENKINS_VERSION=2.150.2 \
+    JENKINS_VERSION=2.164.2 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
