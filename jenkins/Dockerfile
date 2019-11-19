@@ -38,7 +38,8 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     rm -f $GET_PIP_FILE &&\
     rm -rf /tmp/pip_build_root
 
-
+# Dumb fonts - https://wiki.jenkins.io/display/JENKINS/Jenkins+got+java.awt.headless+problem
+RUN yum install dejavu-sans-fonts fontconfig
 
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
