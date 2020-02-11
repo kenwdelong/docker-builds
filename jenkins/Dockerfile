@@ -1,13 +1,13 @@
-FROM kenwdelong/java:java-11.0.5
+FROM kenwdelong/java:java-11.0.6
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
 # Version
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
-ENV MAVEN_VERSION=3.6.2 \
+ENV MAVEN_VERSION=3.6.3 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    JENKINS_VERSION=2.190.2 \
+    JENKINS_VERSION=2.204.2 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
