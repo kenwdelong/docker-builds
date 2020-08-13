@@ -2,8 +2,8 @@ FROM krallin/centos-tini:centos7
 MAINTAINER kenwdelong
 # Based on cooniur/java
 
-ENV JAVA_VERSION=11.0.7 \
-	ZULU_VERSION=11.39.15-ca \
+ENV JAVA_VERSION=11.0.8 \
+	ZULU_VERSION=11.41.23-ca \
     JAVA_HOME=/usr/local/java \
     TMP_DIR=/tmp/java \
     TMP_FILE=$TMP_DIR/java.tar.gz
