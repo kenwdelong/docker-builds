@@ -1,4 +1,4 @@
-FROM krallin/centos-tini:centos7
+FROM amazonlinux:2
 MAINTAINER kenwdelong
 # Based on cooniur/java
 
