@@ -14,7 +14,11 @@ ENV MAVEN_VERSION=3.6.3 \
     GET_PIP_FILE=/tmp/get-pip.py \
     J2OBJC_VERSION=1.3.1 \
     J2OBJC_INSTALL_DIR=/opt \
-    J2OBJC_TMP_FILE=/tmp/j2objc.zip
+    J2OBJC_TMP_FILE=/tmp/j2objc.zip \
+    LANG=en_US.utf8 \
+    LC_ALL=en_US.utf8
+    
+# The above locale variables were inserted Aug 18, 2020 to combat a bug in PIP 20.2 	https://github.com/pypa/pip/issues/8658        
 
 # Timezone
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
@@ -27,7 +31,9 @@ RUN mkdir -p $MAVEN_HOME &&\
     rm $MAVEN_TMP_FILE
 
 # Install EPEL-RELEASE, GIT
-RUN yum -y install dejavu-sans-fonts fontconfig git epel-release gcc python-devel libffi-devel openssl-devel unzip && yum clean all
+RUN yum -y install dejavu-sans-fonts fontconfig git epel-release gcc python-devel libffi-devel openssl-devel unzip &&\
+    yum clean all &&\
+    rm -rf /var/cache/yum
 
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
