@@ -1,7 +1,9 @@
 FROM amazonlinux:2
 MAINTAINER Ken DeLong "kenwdelong@gmail.com"
 
-ENV WORK="/work"
+ENV WORK="/work" \
+    LANG=en_US.utf8 \
+    LC_ALL=en_US.utf8
 
 RUN yum -y update &&\ 
     yum clean all && \
