@@ -9,8 +9,7 @@ RUN yum -y update &&\
     yum clean all && \
     rm -rf /var/cache/yum
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
-    python get-pip.py
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py
 #RUN pip install ansible==2.9.12
 RUN pip install ansible
 RUN ansible-galaxy collection install community.aws
