@@ -7,6 +7,7 @@ MAINTAINER kenwdelong
 ENV MAVEN_VERSION=3.6.3 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
+    ANSIBLE_VERSION=2.10.2 \
     JENKINS_VERSION=2.249.2 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
@@ -38,7 +39,8 @@ RUN yum -y install dejavu-sans-fonts fontconfig git epel-release gcc python-deve
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     python $GET_PIP_FILE &&\
-    pip install ansible &&\
+    pip install ansible==$ANSIBLE_VERSION &&\
+    ansible-galaxy collection install amazon.aws  &&\
     ansible-galaxy collection install community.aws  &&\
     pip install awscli &&\
     pip install boto &&\
