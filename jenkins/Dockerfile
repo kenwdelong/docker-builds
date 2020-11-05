@@ -43,7 +43,7 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     ansible-galaxy collection install amazon.aws  &&\
     ansible-galaxy collection install community.aws  &&\
     pip install awscli &&\
-    pip install boto &&\
+    pip install boto boto3 botocore &&\
     rm -f $GET_PIP_FILE &&\
     rm -rf /tmp/pip_build_root
 
