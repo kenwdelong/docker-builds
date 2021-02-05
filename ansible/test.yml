@@ -13,5 +13,7 @@
   tasks:
     - debug: 
         msg: This really works!
+    - shell:
+        cmd: ansible --version
 
 
