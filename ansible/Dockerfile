@@ -10,7 +10,7 @@ RUN yum -y update &&\
     yum clean all && \
     rm -rf /var/cache/yum
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py
+RUN curl https://bootstrap.pypa.io/2.7/get-pip.py -o get-pip.py && python get-pip.py
     pip install ansible==$ANSIBLE_VERSION &&\
     ansible-galaxy collection install amazon.aws  &&\
     ansible-galaxy collection install community.aws  &&\
