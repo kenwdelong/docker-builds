@@ -13,7 +13,10 @@
   tasks:
     - debug: 
         msg: This really works!
-    - shell:
+    - ansible.builtin.shell:
         cmd: ansible --version
+        register: ver
+    - debug:
+        var: ver
 
 
