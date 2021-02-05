@@ -15,7 +15,7 @@
         msg: This really works!
     - ansible.builtin.shell:
         cmd: ansible --version
-        register: ver
+      register: ver
     - debug:
         var: ver
 
