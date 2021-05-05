@@ -12,8 +12,6 @@ RUN yum -y update &&\
 
 RUN curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py && python get-pip.py  &&\
     pip install ansible==$ANSIBLE_VERSION &&\
-    ansible-galaxy collection install amazon.aws  &&\
-    ansible-galaxy collection install community.aws  &&\
     pip install awscli &&\
     pip install boto boto3 botocore
 RUN mkdir $WORK && \
