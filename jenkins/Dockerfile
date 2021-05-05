@@ -37,11 +37,9 @@ RUN yum -y install dejavu-sans-fonts fontconfig git epel-release gcc python-deve
     rm -rf /var/cache/yum
 
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
-RUN curl "https://bootstrap.pypa.io/2.7/get-pip.py" -o "$GET_PIP_FILE" &&\
+RUN curl "https://bootstrap.pypa.io/pip/2.7/get-pip.py" -o "$GET_PIP_FILE" &&\
     python $GET_PIP_FILE &&\
     pip install ansible==$ANSIBLE_VERSION &&\
-    ansible-galaxy collection install amazon.aws  &&\
-    ansible-galaxy collection install community.aws  &&\
     pip install awscli &&\
     pip install boto boto3 botocore &&\
     rm -f $GET_PIP_FILE &&\
