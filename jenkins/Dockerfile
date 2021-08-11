@@ -25,11 +25,11 @@ ENV MAVEN_VERSION=3.8.1 \
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
     
 # Install Maven
-RUN mkdir -p $MAVEN_HOME &&\
-    wget --quiet --output-document=$MAVEN_TMP_FILE \
-        "http://www.us.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz" &&\
-    tar -xf "$MAVEN_TMP_FILE" --directory="$MAVEN_HOME" --strip-components 1 &&\
-    rm $MAVEN_TMP_FILE
+RUN mkdir -p $MAVEN_HOME
+RUN wget --quiet --output-document=$MAVEN_TMP_FILE \
+        "http://www.us.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz" 
+RUN tar -xf "$MAVEN_TMP_FILE" --directory="$MAVEN_HOME" --strip-components 1
+RUN rm $MAVEN_TMP_FILE
 
 # Install EPEL-RELEASE, GIT
 RUN yum -y install dejavu-sans-fonts fontconfig git epel-release gcc python-devel libffi-devel openssl-devel unzip &&\
