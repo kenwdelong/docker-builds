@@ -14,7 +14,7 @@ RUN amazon-linux-extras enable python3.8
 
 RUN amazon-linux-extras enable python3.8  && \
     yum clean metadata && \
-    yum install python38 python38-devel
+    yum install python38
     
 RUN rm /usr/bin/python3  && \
     ln -s /usr/bin/python3.8  /usr/bin/python3
