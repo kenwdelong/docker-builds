@@ -16,8 +16,7 @@ RUN amazon-linux-extras enable python3.8  && \
     yum clean metadata && \
     yum -y install python38
     
-RUN rm /usr/bin/python3  && \
-    ln -s /usr/bin/python3.8  /usr/bin/python3
+RUN ln -s /usr/bin/python3.8  /usr/bin/python3
     
 
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py  &&\
