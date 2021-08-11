@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-11.0.11
+FROM kenwdelong/java:java-11.0.12
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
@@ -7,8 +7,8 @@ MAINTAINER kenwdelong
 ENV MAVEN_VERSION=3.8.1 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    ANSIBLE_VERSION=3.3.0 \
-    JENKINS_VERSION=2.277.3 \
+    ANSIBLE_VERSION=4.3.0 \
+    JENKINS_VERSION=2.289.3 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
@@ -36,9 +36,20 @@ RUN yum -y install dejavu-sans-fonts fontconfig git epel-release gcc python-deve
     yum clean all &&\
     rm -rf /var/cache/yum
 
+#  == Python 3.8 ==
+RUN amazon-linux-extras enable python3.8
+
+RUN amazon-linux-extras enable python3.8  && \
+    yum clean metadata && \
+    yum -y install python38
+    
+RUN ln -s /usr/bin/python3.8  /usr/bin/python3
+    
+
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
-RUN curl "https://bootstrap.pypa.io/pip/2.7/get-pip.py" -o "$GET_PIP_FILE" &&\
-    python $GET_PIP_FILE &&\
+#RUN curl "https://bootstrap.pypa.io/pip/2.7/get-pip.py" -o "$GET_PIP_FILE" &&\
+RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
+    python3 $GET_PIP_FILE &&\
     pip install ansible==$ANSIBLE_VERSION &&\
     pip install awscli &&\
     pip install boto boto3 botocore &&\
