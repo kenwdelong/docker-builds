@@ -88,4 +88,4 @@ RUN useradd -r -u 201 -m -c "jenkins role account" -d /home/jenkins -s /bin/fals
 RUN chown jenkins $JENKINS_HOME
 USER jenkins
 
-CMD java -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE -jar $JENKINS_INSTALL/jenkins.war
+CMD java -Xmx2048m -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE -jar $JENKINS_INSTALL/jenkins.war
