@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-11.0.13
+FROM kenwdelong/java:java-11.0.14
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
