@@ -4,11 +4,11 @@ MAINTAINER kenwdelong
 
 # Version
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
-ENV MAVEN_VERSION=3.8.3 \
+ENV MAVEN_VERSION=3.8.4 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    ANSIBLE_VERSION=4.8.0 \
-    JENKINS_VERSION=2.303.2 \
+    ANSIBLE_VERSION=5.3.0 \
+    JENKINS_VERSION=2.319.2 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
