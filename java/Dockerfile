@@ -2,8 +2,8 @@ FROM amazonlinux:2
 MAINTAINER kenwdelong
 # Based on cooniur/java
 
-ENV JAVA_VERSION=11.0.13 \
-    ZULU_VERSION=11.52.13-ca \
+ENV JAVA_VERSION=11.0.14 \
+    ZULU_VERSION=11.54.23-ca \
     JAVA_HOME=/usr/local/java \
     TMP_DIR=/tmp/java \
     TMP_FILE=$TMP_DIR/java.tar.gz
