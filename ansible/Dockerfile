@@ -2,7 +2,7 @@ FROM amazonlinux:2
 MAINTAINER Ken DeLong "kenwdelong@gmail.com"
 
 ENV WORK="/work" \
-    ANSIBLE_VERSION=4.8.0 \
+    ANSIBLE_VERSION=5.3.0 \
     LANG=en_US.utf8 \
     LC_ALL=en_US.utf8
 
