@@ -4,7 +4,7 @@ MAINTAINER kenwdelong
 
 # Version
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
-ENV MAVEN_VERSION=3.8.4 \
+ENV MAVEN_VERSION=3.8.5 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
     ANSIBLE_VERSION=5.7.1 \
@@ -27,7 +27,7 @@ RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS
 # Install Maven  
 RUN mkdir -p $MAVEN_HOME  && \
     wget --quiet --output-document=$MAVEN_TMP_FILE \
-        "https://mirrors.advancedhosters.com/apache/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"  && \ 
+        "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"  && \ 
     tar -xf "$MAVEN_TMP_FILE" --directory="$MAVEN_HOME" --strip-components 1  && \
     rm $MAVEN_TMP_FILE
 
