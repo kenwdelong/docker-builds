@@ -59,13 +59,8 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
     mkdir -p $JENKINS_INSTALL &&\
-    wget --quiet --output-document=$JENKINS_INSTALL/jenkins.war "http://mirrors.jenkins.io/war-stable/$JENKINS_VERSION/jenkins.war" &&\
+    wget --quiet --output-document=$JENKINS_INSTALL/jenkins.war "https://mirrors.jenkins.io/war-stable/$JENKINS_VERSION/jenkins.war" &&\
     chmod 0644 $JENKINS_INSTALL/jenkins.war
-#RUN mkdir -p $JENKINS_HOME 
-#RUN mkdir -p $JENKINS_INSTALL 
-#RUN echo wget --quiet --output-document=$JENKINS_INSTALL/jenkins.war "http://mirrors.jenkins.io/war-stable/$JENKINS_VERSION/jenkins.war" 
-#RUN wget --quiet --output-document=$JENKINS_INSTALL/jenkins.war "http://mirrors.jenkins.io/war-stable/$JENKINS_VERSION/jenkins.war" 
-#RUN chmod 0644 $JENKINS_INSTALL/jenkins.war
 
 # Jenkins' home is in /jenkins
 
