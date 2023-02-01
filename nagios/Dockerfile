@@ -1,4 +1,4 @@
-FROM jasonrivers/nagios:4.4.7
+FROM jasonrivers/nagios:4.4.8
 MAINTAINER kenwdelong@yahoo.com
 RUN apt-get --yes install python &&\
     apt-get clean all
