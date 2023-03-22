@@ -1,28 +1,20 @@
-FROM amazonlinux:2
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023.0.20230315.0
 MAINTAINER Ken DeLong "kenwdelong@gmail.com"
 
+#RUN dnf -y install glibc-locale-source glibc-langpack-en  &&\
+#    localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
+# We used to have the locale as en_US.UTF-8, but that is not working.  The localedef call above works on an EC2 instance with Amazon Linux 2023, but not in the docker image.
+
 ENV WORK="/work" \
-    ANSIBLE_VERSION=6.6.0 \
-    LANG=en_US.utf8 \
-    LC_ALL=en_US.utf8
-
-RUN yum -y update && \
-    yum clean all && \
-    rm -rf /var/cache/yum
-
-RUN amazon-linux-extras enable python3.8
-
-RUN amazon-linux-extras enable python3.8  && \
-    yum clean metadata && \
-    yum -y install python38
-    
-RUN ln -s /usr/bin/python3.8  /usr/bin/python3
+    ANSIBLE_VERSION=7.3.0 \
+    LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8
     
 
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py  &&\
-    pip install ansible==$ANSIBLE_VERSION &&\
-    pip install awscli &&\
-    pip install boto boto3 botocore
+    pip3 install ansible==$ANSIBLE_VERSION &&\
+    pip3 install awscli &&\
+    pip3 install boto boto3 botocore
 RUN mkdir $WORK && \
     chmod 0777 $WORK
 WORKDIR $WORK
