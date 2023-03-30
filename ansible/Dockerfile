@@ -6,10 +6,12 @@ MAINTAINER Ken DeLong "kenwdelong@gmail.com"
 # We used to have the locale as en_US.UTF-8, but that is not working.  The localedef call above works on an EC2 instance with Amazon Linux 2023, but not in the docker image.
 
 ENV WORK="/work" \
-    ANSIBLE_VERSION=7.3.0 \
+    ANSIBLE_VERSION=7.4.0 \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
-    
+
+RUN dnf -y install sudo
+RUN dnf -y install bash-completion less openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip    
 
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py  &&\
     pip3 install ansible==$ANSIBLE_VERSION &&\
@@ -17,5 +19,9 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.p
     pip3 install boto boto3 botocore
 RUN mkdir $WORK && \
     chmod 0777 $WORK
+RUN groupadd -g 1999 ansible &&\
+    useradd -l -u 1999 -g ansible ansible
+
+USER ansible
 WORKDIR $WORK
 ENTRYPOINT ["ansible-playbook"]
