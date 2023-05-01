@@ -17,13 +17,12 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.p
     pip3 install ansible==$ANSIBLE_VERSION &&\
     pip3 install awscli &&\
     pip3 install boto boto3 botocore
+
+RUN mv /etc/localtime /etc/localtime.bak  &&\
+    ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+    
 RUN mkdir $WORK && \
     chmod 0777 $WORK
-#RUN groupadd -g 1999 ansible &&\
-#    useradd -l -u 1999 -g ansible ansible
-
-#USER ansible
 WORKDIR $WORK
-#ENV ANSIBLE_HOME=/home/ansible/.ansible \
-#    HOME=/home/ansible
+
 ENTRYPOINT ["ansible-playbook"]
