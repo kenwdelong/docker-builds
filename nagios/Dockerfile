@@ -1,6 +1,6 @@
 FROM jasonrivers/nagios:4.4.6
 MAINTAINER kenwdelong@yahoo.com
-RUN apt-get --yes install python &&\
+RUN apt-get --yes install python vi vim &&\
     apt-get clean all
 RUN echo 'SetEnv TZ "America/Los_Angeles"' >> /etc/apache2/conf-enabled/nagios.conf
 RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py    &&\
