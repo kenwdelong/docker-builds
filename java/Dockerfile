@@ -1,4 +1,4 @@
-FROM amazonlinux:2
+FROM amazonlinux:2023.0.20230315.0
 MAINTAINER kenwdelong
 # Based on cooniur/java
 
@@ -8,12 +8,12 @@ ENV JAVA_VERSION=17.0.7 \
     TMP_DIR=/tmp/java \
     TMP_FILE=$TMP_DIR/java.tar.gz
 
-RUN yum -y update &&\ 
-    yum -y install wget tar sudo && \
-    yum clean all && \
+RUN dnf -y update &&\ 
+    dnf -y install wget tar sudo bash-completion less openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip vi vim  && \
+    dnf clean all && \
     rm -rf /var/cache/yum &&\
     mkdir -p $JAVA_HOME && \
-	 mkdir -p $TMP_DIR && \
+	  mkdir -p $TMP_DIR && \
     wget --quiet --output-document="$TMP_FILE" \
         --no-cookies --no-check-certificate \
         "https://cdn.azul.com/zulu/bin/zulu${ZULU_VERSION}-jdk${JAVA_VERSION}-linux_x64.tar.gz" && \
