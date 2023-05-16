@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-17.0.7
+FROM kenwdelong/java:java-17.0.7-2023
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
@@ -7,7 +7,7 @@ MAINTAINER kenwdelong
 ENV MAVEN_VERSION=3.9.1 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    ANSIBLE_VERSION=6.7.0 \
+    ANSIBLE_VERSION=7.4.0 \
     JENKINS_VERSION=2.387.2 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
@@ -16,17 +16,16 @@ ENV MAVEN_VERSION=3.9.1 \
     J2OBJC_VERSION=1.3.1 \
     J2OBJC_INSTALL_DIR=/opt \
     J2OBJC_TMP_FILE=/tmp/j2objc.zip \
-    LANG=en_US.utf8 \
-    LC_ALL=en_US.utf8
+    LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8
     
-# The above locale variables were inserted Aug 18, 2020 to combat a bug in PIP 20.2 	https://github.com/pypa/pip/issues/8658        
 
 # Timezone
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
     
 # Install EPEL-RELEASE, GIT
-RUN yum -y install dejavu-sans-fonts fontconfig git wget epel-release gcc python-devel libffi-devel openssl-devel unzip &&\
-    yum clean all &&\
+RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python-devel libffi-devel openssl-devel unzip &&\
+    dnf clean all &&\
     rm -rf /var/cache/yum
 
 # Install Maven  
@@ -36,18 +35,7 @@ RUN mkdir -p $MAVEN_HOME  && \
     tar -xf "$MAVEN_TMP_FILE" --directory="$MAVEN_HOME" --strip-components 1  && \
     rm $MAVEN_TMP_FILE
 
-#  == Python 3.8 ==
-RUN amazon-linux-extras enable python3.8
-
-RUN amazon-linux-extras enable python3.8  && \
-    yum clean metadata && \
-    yum -y install python38
-    
-RUN ln -s /usr/bin/python3.8  /usr/bin/python3
-    
-
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
-#RUN curl "https://bootstrap.pypa.io/pip/2.7/get-pip.py" -o "$GET_PIP_FILE" &&\
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     python3 $GET_PIP_FILE &&\
     pip install ansible==$ANSIBLE_VERSION &&\
@@ -63,22 +51,6 @@ RUN mkdir -p $JENKINS_HOME &&\
     chmod 0644 $JENKINS_INSTALL/jenkins.war
 
 # Jenkins' home is in /jenkins
-
-
-# Install j2objc. Since we are only translating, we don't need the mac libs.  Saves 500MB.
-#RUN wget --quiet --output-document=$J2OBJC_TMP_FILE "https://github.com/google/j2objc/releases/download/${J2OBJC_VERSION}/j2objc-${J2OBJC_VERSION}.zip" &&\
-#    unzip "$J2OBJC_TMP_FILE" -d "$J2OBJC_INSTALL_DIR" &&\ 
-#    ln -s "${J2OBJC_INSTALL_DIR}/j2objc-${J2OBJC_VERSION}" "${J2OBJC_INSTALL_DIR}/j2objc" &&\
-#    rm -rf ${J2OBJC_INSTALL_DIR}/j2objc/lib/maxosx &&\
-#    rm -rf ${J2OBJC_INSTALL_DIR}/j2objc/lib/appletvos &&\
-#    rm $J2OBJC_TMP_FILE
-# Take this out until we someday need to recompile weightlib. This will make the image way smaller
-
-
-# Install NodeJS
-#RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -  &&\
-#    sudo yum -y install nodejs
-# We don't need to install node - the Jenkins Node Plugin handles it for us!
 
 ENV PATH $MAVEN_HOME/bin:$PATH
 
