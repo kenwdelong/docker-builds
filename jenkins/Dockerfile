@@ -1,14 +1,14 @@
-FROM kenwdelong/java:java-17.0.7-2023
+FROM kenwdelong/java:java-17.0.8
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
 # Version
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
-ENV MAVEN_VERSION=3.9.1 \
+ENV MAVEN_VERSION=3.9.3 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    ANSIBLE_VERSION=7.4.0 \
-    JENKINS_VERSION=2.387.2 \
+    ANSIBLE_VERSION=8.2.0 \
+    JENKINS_VERSION=2.401.3 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
@@ -23,7 +23,7 @@ ENV MAVEN_VERSION=3.9.1 \
 # Timezone
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
     
-# Install EPEL-RELEASE, GIT
+# Install extra packages
 RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python-devel libffi-devel openssl-devel unzip &&\
     dnf clean all &&\
     rm -rf /var/cache/yum
