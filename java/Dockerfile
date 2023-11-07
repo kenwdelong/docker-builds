@@ -1,10 +1,10 @@
-FROM amazonlinux:2023.1.20230705.0
+FROM amazonlinux:2023.2.20231026.0
 # Tags are here: https://hub.docker.com/_/amazonlinux/tags
 MAINTAINER kenwdelong
 # Based on cooniur/java
 
-ENV JAVA_VERSION=17.0.8 \
-    ZULU_VERSION=17.44.15-ca \
+ENV JAVA_VERSION=17.0.9 \
+    ZULU_VERSION=17.46.19-ca \
     JAVA_HOME=/usr/local/java \
     TMP_DIR=/tmp/java \
     TMP_FILE=$TMP_DIR/java.tar.gz
