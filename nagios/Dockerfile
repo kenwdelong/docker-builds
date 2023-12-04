@@ -3,6 +3,7 @@ FROM jasonrivers/nagios:4.4.14
 #FROM jasonrivers/nagios:4.4.6   # branch is missing from https://github.com/JasonRivers/Docker-Nagios/tree/master, 4.4.4 was 16.04, 4.4.7 was 20.04
 MAINTAINER kenwdelong@yahoo.com
 
+RUN apt update
 RUN apt-get --yes install python2 vim &&\
     apt-get clean all
 RUN ln -s /usr/bin/python2 /usr/bin/python
