@@ -1,8 +1,11 @@
-#FROM jasonrivers/nagios:4.4.6
-FROM jasonrivers/nagios:4.4.14
+#FROM jasonrivers/nagios:4.4.6   # branch is missing from https://github.com/JasonRivers/Docker-Nagios/tree/master, 4.4.4 was 16.04, 4.4.7 was 20.04
+FROM jasonrivers/nagios:4.4.14   # from ubunutu:22.04
 MAINTAINER kenwdelong@yahoo.com
-RUN apt-get --yes install python vi vim &&\
+
+RUN apt-get --yes install python2 vim &&\
     apt-get clean all
+RUN ln -s /usr/bin/python2 /usr/bin/python
+
 RUN echo 'SetEnv TZ "America/Los_Angeles"' >> /etc/apache2/conf-enabled/nagios.conf
 RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py    &&\
     python get-pip.py                            &&\
