@@ -1,4 +1,5 @@
-FROM jasonrivers/nagios:4.4.6
+#FROM jasonrivers/nagios:4.4.6
+FROM jasonrivers/nagios:4.4.14
 MAINTAINER kenwdelong@yahoo.com
 RUN apt-get --yes install python vi vim &&\
     apt-get clean all
