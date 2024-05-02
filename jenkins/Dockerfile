@@ -7,7 +7,7 @@ MAINTAINER kenwdelong
 ENV MAVEN_VERSION=3.9.6 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    ANSIBLE_VERSION=9.5.1 \
+    ANSIBLE_VERSION=8.7.0 \
     JENKINS_VERSION=2.419 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
