@@ -1,4 +1,4 @@
-FROM amazonlinux:2023.2.20231026.0
+FROM amazonlinux:2023.3.20240312.0 
 MAINTAINER Ken DeLong "kenwdelong@gmail.com"
 
 #RUN dnf -y install glibc-locale-source glibc-langpack-en  &&\
