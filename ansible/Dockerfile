@@ -12,7 +12,7 @@ ENV WORK="/work" \
 
 RUN dnf -y install bash-completion less openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip python3.11 
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py  &&\
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3.11 get-pip.py  &&\
     pip3 install ansible==$ANSIBLE_VERSION &&\
     pip3 install awscli &&\
     pip3 install boto boto3 botocore
