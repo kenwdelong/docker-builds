@@ -41,9 +41,9 @@ RUN mkdir -p $MAVEN_HOME  && \
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     python${PYTHON_VERSION} $GET_PIP_FILE &&\
-    pip install ansible==$ANSIBLE_VERSION &&\
-    pip install awscli &&\
-    pip install boto boto3 botocore &&\
+    pip${PYTHON_VERSION} install ansible==$ANSIBLE_VERSION &&\
+    pip${PYTHON_VERSION} install awscli &&\
+    pip${PYTHON_VERSION} install boto boto3 botocore &&\
     rm -f $GET_PIP_FILE &&\
     rm -rf /tmp/pip_build_root
 

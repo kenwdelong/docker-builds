@@ -14,9 +14,9 @@ ENV WORK="/work" \
 RUN dnf -y install bash-completion less openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip python${PYTHON_VERSION} 
 
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python${PYTHON_VERSION} get-pip.py  &&\
-    pip3 install ansible==$ANSIBLE_VERSION &&\
-    pip3 install awscli &&\
-    pip3 install boto boto3 botocore
+    pip${PYTHON_VERSION} install ansible==$ANSIBLE_VERSION &&\
+    pip${PYTHON_VERSION} install awscli &&\
+    pip${PYTHON_VERSION} install boto boto3 botocore
 
 RUN mv /etc/localtime /etc/localtime.bak  &&\
     ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
