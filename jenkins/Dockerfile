@@ -1,14 +1,15 @@
-FROM kenwdelong/java:java-21.0.3
+FROM kenwdelong/java:java-21.0.4
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
 # Version
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
-ENV MAVEN_VERSION=3.9.6 \
+ENV MAVEN_VERSION=3.9.8 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    ANSIBLE_VERSION=8.7.0 \
-    JENKINS_VERSION=2.440.3 \
+    ANSIBLE_VERSION=10.2.0 \
+    JENKINS_VERSION=2.452.3 \
+    PYTHON_VERSION=3.11 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
@@ -24,7 +25,7 @@ ENV MAVEN_VERSION=3.9.6 \
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
     
 # Install extra packages
-RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python-devel libffi-devel openssl-devel unzip net-tools procps-ng &&\
+RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python-devel libffi-devel openssl-devel unzip net-tools procps-ng python${PYTHON_VERSION} &&\
     dnf clean all &&\
     rm -rf /var/cache/yum
 
@@ -37,7 +38,7 @@ RUN mkdir -p $MAVEN_HOME  && \
 
 # Install Ansible, AWS-CLI, Boto (AWS lib in Python)
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
-    python3 $GET_PIP_FILE &&\
+    python${PYTHON_VERSION} $GET_PIP_FILE &&\
     pip install ansible==$ANSIBLE_VERSION &&\
     pip install awscli &&\
     pip install boto boto3 botocore &&\
