@@ -27,7 +27,7 @@ ENV MAVEN_VERSION=3.9.8 \
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
     
 # Install extra packages
-RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python-devel libffi-devel openssl-devel unzip net-tools procps-ng python${PYTHON_VERSION} &&\
+RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python${PYTHON_VERSION}-devel libffi-devel openssl-devel unzip net-tools procps-ng python${PYTHON_VERSION} &&\
     dnf clean all &&\
     rm -rf /var/cache/yum
 

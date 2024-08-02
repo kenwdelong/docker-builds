@@ -7,12 +7,13 @@ MAINTAINER Ken DeLong "kenwdelong@gmail.com"
 
 ENV WORK="/work" \
     ANSIBLE_VERSION=10.2.0 \
+    PYTHON_VERSION=3.11 \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
-RUN dnf -y install bash-completion less openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip python3.11 
+RUN dnf -y install bash-completion less openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip python${PYTHON_VERSION} 
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3.11 get-pip.py  &&\
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python${PYTHON_VERSION} get-pip.py  &&\
     pip3 install ansible==$ANSIBLE_VERSION &&\
     pip3 install awscli &&\
     pip3 install boto boto3 botocore
