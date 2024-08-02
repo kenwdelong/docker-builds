@@ -10,7 +10,7 @@ ENV WORK="/work" \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
-RUN dnf -y install bash-completion less openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip    
+RUN dnf -y install bash-completion less openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip python3.11 
 
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py  &&\
     pip3 install ansible==$ANSIBLE_VERSION &&\
