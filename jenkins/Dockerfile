@@ -4,6 +4,8 @@ MAINTAINER kenwdelong
 
 # Version
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
+# Python https://docs.aws.amazon.com/linux/al2023/ug/python.html
+# Ansible 10.2.0 requires Python 3.10 or greater
 ENV MAVEN_VERSION=3.9.8 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
