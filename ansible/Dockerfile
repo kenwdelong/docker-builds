@@ -1,4 +1,4 @@
-FROM amazonlinux:2023.3.20240312.0 
+FROM amazonlinux:2023.5.20240624.0 
 MAINTAINER Ken DeLong "kenwdelong@gmail.com"
 
 #RUN dnf -y install glibc-locale-source glibc-langpack-en  &&\
@@ -6,7 +6,7 @@ MAINTAINER Ken DeLong "kenwdelong@gmail.com"
 # We used to have the locale as en_US.UTF-8, but that is not working.  The localedef call above works on an EC2 instance with Amazon Linux 2023, but not in the docker image.
 
 ENV WORK="/work" \
-    ANSIBLE_VERSION=8.7.0 \
+    ANSIBLE_VERSION=10.2.0 \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
