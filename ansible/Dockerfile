@@ -16,6 +16,7 @@ RUN dnf -y install bash-completion less openssh openssh-clients openssl openssl-
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python${PYTHON_VERSION} get-pip.py  &&\
     pip${PYTHON_VERSION} install ansible==$ANSIBLE_VERSION &&\
     pip${PYTHON_VERSION} install awscli packaging &&\         # I think adding "packaging" here will stop the error on the route53 module
+    pip3 install boto boto3 botocore   &&\                    # want it for both "system python" (3.9) and 3.11
     pip${PYTHON_VERSION} install boto boto3 botocore
 
 RUN mv /etc/localtime /etc/localtime.bak  &&\
