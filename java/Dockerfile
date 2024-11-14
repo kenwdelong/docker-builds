@@ -1,11 +1,11 @@
-FROM amazonlinux:2023.5.20240624.0   
+FROM amazonlinux:2023.5.20240916.0   
 # Using the above image, which does not match all.yml, because that's the closest tag available
 # Tags are here: https://hub.docker.com/_/amazonlinux/tags
 MAINTAINER kenwdelong
 # Based on cooniur/java
 
-ENV JAVA_VERSION=21.0.4 \
-    ZULU_VERSION=21.36.17-ca \
+ENV JAVA_VERSION=21.0.5 \
+    ZULU_VERSION=21.38.21-ca \
     JAVA_HOME=/usr/local/java \
     TMP_DIR=/tmp/java \
     TMP_FILE=$TMP_DIR/java.tar.gz
