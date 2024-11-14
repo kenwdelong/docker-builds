@@ -17,6 +17,8 @@ RUN dnf -y install bash-completion less openssh openssh-clients openssl openssl-
 # system version
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python${PYTHON_SYSTEM_VERSION} get-pip.py
 
+# install boto for both system python and modern python
+# add packaging to stop error in ansible route53 module
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python${PYTHON_VERSION} get-pip.py  &&\
     pip${PYTHON_VERSION} install ansible==$ANSIBLE_VERSION &&\
     pip${PYTHON_VERSION} install awscli packaging &&\                 
