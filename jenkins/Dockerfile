@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-21.0.4
+FROM kenwdelong/java:java-21.0.5
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
@@ -6,11 +6,11 @@ MAINTAINER kenwdelong
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
 # Python https://docs.aws.amazon.com/linux/al2023/ug/python.html
 # Ansible 10.2.0 requires Python 3.10 or greater
-ENV MAVEN_VERSION=3.9.8 \
+ENV MAVEN_VERSION=3.9.9 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    ANSIBLE_VERSION=10.2.0 \
-    JENKINS_VERSION=2.452.3 \
+    ANSIBLE_VERSION=10.6.0 \
+    JENKINS_VERSION=2.479.1 \
     PYTHON_VERSION=3.11 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
