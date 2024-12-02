@@ -8,7 +8,7 @@ RUN apt-get --yes install vim &&\
     apt-get clean all
 
 RUN echo 'SetEnv TZ "America/Los_Angeles"' >> /etc/apache2/conf-enabled/nagios.conf
-RUN pip install boto tornado
+RUN pip install --break-system-packages boto tornado
 
 # user id is from all.yml. Nagios was 999
 # from https://www.cyberciti.biz/faq/linux-change-user-group-uid-gid-for-all-owned-files/
