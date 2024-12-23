@@ -4,11 +4,10 @@ FROM jasonrivers/nagios:4.5.7
 LABEL maintainer="kenwdelong@yahoo.com"
 
 RUN apt update
-RUN apt-get --yes install vim &&\
+RUN apt-get --yes install vim boto3 &&\
     apt-get clean all
 
 RUN echo 'SetEnv TZ "America/Los_Angeles"' >> /etc/apache2/conf-enabled/nagios.conf
-RUN pip install --break-system-packages boto tornado
 
 # user id is from all.yml. Nagios was 999
 # from https://www.cyberciti.biz/faq/linux-change-user-group-uid-gid-for-all-owned-files/
