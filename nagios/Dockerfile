@@ -7,8 +7,7 @@ RUN apt update
 RUN apt-get --yes install vim &&\
     apt-get clean all
     
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py  &&\
-    pip3 install boto boto3 botocore --break-system-packages
+RUN pip3 install boto boto3 botocore --break-system-packages
     
 
 RUN echo 'SetEnv TZ "America/Los_Angeles"' >> /etc/apache2/conf-enabled/nagios.conf
