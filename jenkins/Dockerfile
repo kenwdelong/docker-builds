@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-21.0.6
+FROM kenwdelong/java:java-21.0.7
 MAINTAINER kenwdelong
 # Inspired by cooniur
 
@@ -9,8 +9,8 @@ MAINTAINER kenwdelong
 ENV MAVEN_VERSION=3.9.9 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    ANSIBLE_VERSION=11.2.0 \
-    JENKINS_VERSION=2.492.1 \
+    ANSIBLE_VERSION=11.5.0 \
+    JENKINS_VERSION=2.504.1 \
     PYTHON_VERSION=3.11 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
