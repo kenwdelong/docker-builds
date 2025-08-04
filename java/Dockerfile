@@ -1,11 +1,11 @@
-FROM amazonlinux:2023.7.20250331.0   
+FROM amazonlinux:2023.7.20250623.1   
 # Using the above image, which does not match all.yml, because that's the closest tag available
 # Tags are here: https://hub.docker.com/_/amazonlinux/tags
 MAINTAINER kenwdelong
 # Based on cooniur/java
 
-ENV JAVA_VERSION=21.0.7 \
-    ZULU_VERSION=21.42.19-ca \
+ENV JAVA_VERSION=21.0.8 \
+    ZULU_VERSION=21.44.17-ca \
     JAVA_HOME=/usr/local/java \
     TMP_DIR=/tmp/java \
     TMP_FILE=$TMP_DIR/java.tar.gz
@@ -13,7 +13,7 @@ ENV JAVA_VERSION=21.0.7 \
 RUN dnf -y update &&\ 
     dnf -y install wget tar sudo bash-completion less openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip vi vim  && \
     dnf clean all && \
-    rm -rf /var/cache/yum &&\
+    rm -rf /var/cache/dnf &&\
     mkdir -p $JAVA_HOME && \
 	  mkdir -p $TMP_DIR && \
     wget --quiet --output-document="$TMP_FILE" \
