@@ -23,7 +23,7 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python${PYTHON_VE
     pip${PYTHON_VERSION} install ansible==$ANSIBLE_VERSION &&\
     pip${PYTHON_VERSION} install awscli packaging &&\                 
     pip${PYTHON_SYSTEM_VERSION} install boto boto3 botocore   &&\     
-    pip${PYTHON_VERSION} install boto boto3 botocore
+    pip${PYTHON_VERSION} install boto boto3 botocore PyMySQL
 
 RUN mv /etc/localtime /etc/localtime.bak  &&\
     ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
