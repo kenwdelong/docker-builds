@@ -1,5 +1,7 @@
 FROM amazonlinux:2023.7.20250623.1   
-MAINTAINER Ken DeLong "kenwdelong@gmail.com"
+LABEL maintainer="Ken DeLong <kenwdelong@gmail.com>"
+LABEL org.opencontainers.image.source="https://github.com/kenwdelong/docker-builds/tree/master/ansible"
+LABEL org.opencontainers.image.description="Custom Python container for Ansible + MySQL tasks"
 
 #RUN dnf -y install glibc-locale-source glibc-langpack-en  &&\
 #    localedef -v -c -i en_US -f UTF-8 en_US.UTF-8

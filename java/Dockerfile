@@ -1,8 +1,10 @@
 FROM amazonlinux:2023.7.20250623.1   
 # Using the above image, which does not match all.yml, because that's the closest tag available
 # Tags are here: https://hub.docker.com/_/amazonlinux/tags
-MAINTAINER kenwdelong
-# Based on cooniur/java
+
+LABEL maintainer="Ken DeLong <kenwdelong@gmail.com>"
+LABEL org.opencontainers.image.source="https://github.com/kenwdelong/docker-builds/tree/master/java"
+LABEL org.opencontainers.image.description="Container with Azul Zulu Java"
 
 ENV JAVA_VERSION=21.0.8 \
     ZULU_VERSION=21.44.17-ca \

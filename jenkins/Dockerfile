@@ -1,6 +1,8 @@
 FROM kenwdelong/java:java-21.0.8
-MAINTAINER kenwdelong
-# Inspired by cooniur
+
+LABEL maintainer="Ken DeLong <kenwdelong@gmail.com>"
+LABEL org.opencontainers.image.source="https://github.com/kenwdelong/docker-builds/tree/master/jenkins"
+LABEL org.opencontainers.image.description="Container with Java, Jenkins, Maven, and Ansible"
 
 # Version
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
