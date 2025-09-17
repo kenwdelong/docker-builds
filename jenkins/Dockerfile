@@ -46,6 +46,13 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     rm -f $GET_PIP_FILE &&\
     rm -rf /tmp/pip_build_root
 
+## Install AWS SAM CLI using zip file from the latest release
+RUN curl -Lo /tmp/aws-sam-cli-linux-x86_64.zip https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip && \
+    unzip /tmp/aws-sam-cli-linux-x86_64.zip -d /tmp/sam-install && \
+    /tmp/sam-install/install --update --bin-dir /usr/local/bin --install-dir /usr/local/aws-sam-cli && \
+    rm -rf /tmp/aws-sam-cli-linux-x86_64.zip /tmp/sam-install && \
+    sam --version
+
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
     mkdir -p $JENKINS_INSTALL &&\
