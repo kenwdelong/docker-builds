@@ -11,7 +11,7 @@ LABEL org.opencontainers.image.description="Container with Java, Jenkins, Maven,
 ENV MAVEN_VERSION=3.9.11 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    ANSIBLE_VERSION=11.8.0 \
+    ANSIBLE_VERSION=12.0.0 \
     JENKINS_VERSION=2.516.1 \
     PYTHON_VERSION=3.11 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
@@ -23,11 +23,9 @@ ENV MAVEN_VERSION=3.9.11 \
     
 # Timezone
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
-    
+
 # Install extra packages
-RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python${PYTHON_VERSION}-devel libffi-devel openssl-devel unzip net-tools procps-ng python${PYTHON_VERSION} &&\
-    dnf clean all &&\
-    rm -rf /var/cache/yum
+RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python${PYTHON_VERSION}-devel libffi-devel openssl-devel unzip net-tools procps-ng python${PYTHON_VERSION}
 
 # Install Maven  
 RUN mkdir -p $MAVEN_HOME  && \
@@ -53,11 +51,9 @@ RUN curl -Lo /tmp/aws-sam-cli-linux-x86_64.zip https://github.com/aws/aws-sam-cl
     sam --version
 
 # Install Docker Engine CLI
-RUN dnf -y install dnf-plugins-core && \
-    dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
-    # https://repost.aws/questions/QU1jeKaTRYQ7WeA7XobfP21g/how-do-i-install-docker-version-27-3-1-on-amazon-linux-2023
-    sed -i 's/$releasever/9/g' /etc/yum.repos.d/docker-ce.repo && \
-    dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+RUN dnf -y install docker && \
+    systemctl enable docker && \
+    systemctl start docker
 
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
@@ -67,8 +63,7 @@ RUN mkdir -p $JENKINS_HOME &&\
 
 # Clean DNF cache, remove temp files
 RUN dnf clean all &&\
-    rm -rf /var/cache/yum &&\
-    rm -rf /tmp/* /var/tmp/*
+    rm -rf /var/cache/yum
 
 ENV PATH=$MAVEN_HOME/bin:$PATH
 
