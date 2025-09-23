@@ -21,7 +21,6 @@ ENV MAVEN_VERSION=3.9.11 \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
     
-
 # Timezone
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
     
@@ -53,20 +52,31 @@ RUN curl -Lo /tmp/aws-sam-cli-linux-x86_64.zip https://github.com/aws/aws-sam-cl
     rm -rf /tmp/aws-sam-cli-linux-x86_64.zip /tmp/sam-install && \
     sam --version
 
+# Install Docker Engine CLI
+RUN dnf -y install dnf-plugins-core && \
+    dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
+    # https://repost.aws/questions/QU1jeKaTRYQ7WeA7XobfP21g/how-do-i-install-docker-version-27-3-1-on-amazon-linux-2023
+    sed -i 's/$releasever/9/g' /etc/yum.repos.d/docker-ce.repo && \
+    dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
     mkdir -p $JENKINS_INSTALL &&\
     wget --quiet --output-document=$JENKINS_INSTALL/jenkins.war "https://mirrors.jenkins.io/war-stable/$JENKINS_VERSION/jenkins.war" &&\
     chmod 0644 $JENKINS_INSTALL/jenkins.war
 
-# Jenkins' home is in /jenkins
+# Clean DNF cache, remove temp files
+RUN dnf clean all &&\
+    rm -rf /var/cache/yum &&\
+    rm -rf /tmp/* /var/tmp/*
 
-ENV PATH $MAVEN_HOME/bin:$PATH
+ENV PATH=$MAVEN_HOME/bin:$PATH
 
 EXPOSE 8080
 
 RUN useradd -r -u 201 -m -c "jenkins role account" -d /home/jenkins -s /bin/false jenkins
 RUN chown jenkins $JENKINS_HOME
+
 USER jenkins
 
 CMD java -Xmx2048m -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE -jar $JENKINS_INSTALL/jenkins.war
