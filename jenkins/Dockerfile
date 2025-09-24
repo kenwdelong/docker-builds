@@ -11,7 +11,7 @@ LABEL org.opencontainers.image.description="Container with Java, Jenkins, Maven,
 ENV MAVEN_VERSION=3.9.11 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    ANSIBLE_VERSION=12.0.0 \
+    ANSIBLE_VERSION=11.8.0 \
     JENKINS_VERSION=2.516.1 \
     PYTHON_VERSION=3.11 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
@@ -21,11 +21,14 @@ ENV MAVEN_VERSION=3.9.11 \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
     
+
 # Timezone
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
-
+    
 # Install extra packages
-RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python${PYTHON_VERSION}-devel libffi-devel openssl-devel unzip net-tools procps-ng python${PYTHON_VERSION}
+RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python${PYTHON_VERSION}-devel libffi-devel openssl-devel unzip net-tools procps-ng python${PYTHON_VERSION} &&\
+    dnf clean all &&\
+    rm -rf /var/cache/yum
 
 # Install Maven  
 RUN mkdir -p $MAVEN_HOME  && \
@@ -50,28 +53,20 @@ RUN curl -Lo /tmp/aws-sam-cli-linux-x86_64.zip https://github.com/aws/aws-sam-cl
     rm -rf /tmp/aws-sam-cli-linux-x86_64.zip /tmp/sam-install && \
     sam --version
 
-# Install Docker Engine CLI
-RUN dnf -y install docker && \
-    systemctl enable docker && \
-    systemctl start docker
-
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
     mkdir -p $JENKINS_INSTALL &&\
     wget --quiet --output-document=$JENKINS_INSTALL/jenkins.war "https://mirrors.jenkins.io/war-stable/$JENKINS_VERSION/jenkins.war" &&\
     chmod 0644 $JENKINS_INSTALL/jenkins.war
 
-# Clean DNF cache, remove temp files
-RUN dnf clean all &&\
-    rm -rf /var/cache/yum
+# Jenkins' home is in /jenkins
 
-ENV PATH=$MAVEN_HOME/bin:$PATH
+ENV PATH $MAVEN_HOME/bin:$PATH
 
 EXPOSE 8080
 
 RUN useradd -r -u 201 -m -c "jenkins role account" -d /home/jenkins -s /bin/false jenkins
 RUN chown jenkins $JENKINS_HOME
-
 USER jenkins
 
 CMD java -Xmx2048m -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE -jar $JENKINS_INSTALL/jenkins.war
