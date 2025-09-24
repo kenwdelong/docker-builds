@@ -23,9 +23,11 @@ ENV MAVEN_VERSION=3.9.11 \
     
 # Timezone
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
-
+    
 # Install extra packages
-RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python${PYTHON_VERSION}-devel libffi-devel openssl-devel unzip net-tools procps-ng python${PYTHON_VERSION}
+RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python${PYTHON_VERSION}-devel libffi-devel openssl-devel unzip net-tools procps-ng python${PYTHON_VERSION} &&\
+    dnf clean all &&\
+    rm -rf /var/cache/yum
 
 # Install Maven  
 RUN mkdir -p $MAVEN_HOME  && \
@@ -51,9 +53,7 @@ RUN curl -Lo /tmp/aws-sam-cli-linux-x86_64.zip https://github.com/aws/aws-sam-cl
     sam --version
 
 # Install Docker Engine CLI
-RUN dnf -y install docker && \
-    systemctl enable docker && \
-    systemctl start docker
+RUN dnf -y install docker
 
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
@@ -63,7 +63,8 @@ RUN mkdir -p $JENKINS_HOME &&\
 
 # Clean DNF cache, remove temp files
 RUN dnf clean all &&\
-    rm -rf /var/cache/yum
+    rm -rf /var/cache/yum &&\
+    rm -rf /tmp/* /var/tmp/*
 
 ENV PATH=$MAVEN_HOME/bin:$PATH
 
