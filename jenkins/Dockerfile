@@ -79,4 +79,4 @@ RUN chown jenkins $JENKINS_HOME
 
 USER jenkins
 
-CMD java -Xmx2048m -Dorg.apache.commons.jelly.tags.fmt.timeZone=$JENKINS_TIMEZONE -jar $JENKINS_INSTALL/jenkins.war
+CMD ["java", "-Xmx2048m", "-Dorg.apache.commons.jelly.tags.fmt.timeZone=${JENKINS_TIMEZONE}", "-jar", "${JENKINS_INSTALL}/jenkins.war"]
