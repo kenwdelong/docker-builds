@@ -53,7 +53,11 @@ RUN curl -Lo /tmp/aws-sam-cli-linux-x86_64.zip https://github.com/aws/aws-sam-cl
     sam --version
 
 # Install Docker Engine CLI
-RUN dnf -y install docker
+RUN dnf -y install dnf-plugins-core && \
+    dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
+    # https://repost.aws/questions/QU1jeKaTRYQ7WeA7XobfP21g/how-do-i-install-docker-version-27-3-1-on-amazon-linux-2023
+    sed -i 's/$releasever/9/g' /etc/yum.repos.d/docker-ce.repo && \
+    dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
