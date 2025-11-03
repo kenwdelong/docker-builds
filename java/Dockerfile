@@ -7,8 +7,8 @@ LABEL maintainer="Ken DeLong <kenwdelong@gmail.com>"
 LABEL org.opencontainers.image.source="https://github.com/kenwdelong/docker-builds/tree/master/java"
 LABEL org.opencontainers.image.description="Container with Azul Zulu Java"
 
-ENV JAVA_VERSION=21.0.8 \
-    ZULU_VERSION=21.44.17-ca \
+ENV JAVA_VERSION=21.0.9 \
+    ZULU_VERSION=21.46.19-ca \
     JAVA_HOME=/usr/local/java \
     TMP_DIR=/tmp/java \
     TMP_FILE=$TMP_DIR/java.tar.gz
