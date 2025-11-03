@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-21.0.8
+FROM kenwdelong/java:java-21.0.9
 
 LABEL maintainer="Ken DeLong <kenwdelong@gmail.com>"
 LABEL org.opencontainers.image.source="https://github.com/kenwdelong/docker-builds/tree/master/jenkins"
@@ -11,8 +11,8 @@ LABEL org.opencontainers.image.description="Container with Java, Jenkins, Maven,
 ENV MAVEN_VERSION=3.9.11 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
-    ANSIBLE_VERSION=11.8.0 \
-    JENKINS_VERSION=2.516.1 \
+    ANSIBLE_VERSION=12.1.0 \
+    JENKINS_VERSION=2.528.1 \
     PYTHON_VERSION=3.11 \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
