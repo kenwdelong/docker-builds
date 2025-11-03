@@ -1,4 +1,4 @@
-FROM amazonlinux:2023.7.20250623.1   
+FROM amazonlinux:2023.9.20251027.0   
 LABEL maintainer="Ken DeLong <kenwdelong@gmail.com>"
 LABEL org.opencontainers.image.source="https://github.com/kenwdelong/docker-builds/tree/master/ansible"
 LABEL org.opencontainers.image.description="Custom Python container for Ansible + MySQL tasks"
@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.description="Custom Python container for Ansible 
 # We used to have the locale as en_US.UTF-8, but that is not working.  The localedef call above works on an EC2 instance with Amazon Linux 2023, but not in the docker image.
 
 ENV WORK="/work" \
-    ANSIBLE_VERSION=12.0.0 \
+    ANSIBLE_VERSION=12.1.0 \
     PYTHON_VERSION=3.11 \
     PYTHON_SYSTEM_VERSION=3.9 \
     LANG=C.UTF-8 \
