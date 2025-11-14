@@ -9,11 +9,12 @@ LABEL org.opencontainers.image.description="Container with Java, Jenkins, Maven,
 # Python https://docs.aws.amazon.com/linux/al2023/ug/python.html
 # Ansible 10.2.0 requires Python 3.10 or greater
 ENV MAVEN_VERSION=3.9.11 \
-    MAVEN_HOME=/usr/local/maven \
-    MAVEN_TMP_FILE=/tmp/maven.tar.gz \
     ANSIBLE_VERSION=12.1.0 \
     JENKINS_VERSION=2.528.1 \
     PYTHON_VERSION=3.11 \
+    UV_VERSION=0.9.7 \
+    MAVEN_HOME=/usr/local/maven \
+    MAVEN_TMP_FILE=/tmp/maven.tar.gz \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
     JENKINS_HOME=/jenkins \
     JENKINS_TIMEZONE=America/Los_Angeles \
@@ -47,11 +48,14 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     rm -rf /tmp/pip_build_root
 
 ## Install AWS SAM CLI using zip file from the latest release
-RUN curl -Lo /tmp/aws-sam-cli-linux-x86_64.zip https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip && \
-    unzip /tmp/aws-sam-cli-linux-x86_64.zip -d /tmp/sam-install && \
-    /tmp/sam-install/install --update --bin-dir /usr/local/bin --install-dir /usr/local/aws-sam-cli && \
-    rm -rf /tmp/aws-sam-cli-linux-x86_64.zip /tmp/sam-install && \
-    sam --version
+#RUN curl -Lo /tmp/aws-sam-cli-linux-x86_64.zip https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip && \
+#    unzip /tmp/aws-sam-cli-linux-x86_64.zip -d /tmp/sam-install && \
+#    /tmp/sam-install/install --update --bin-dir /usr/local/bin --install-dir /usr/local/aws-sam-cli && \
+#    rm -rf /tmp/aws-sam-cli-linux-x86_64.zip /tmp/sam-install && \
+#    sam --version
+
+# Install uv
+RUN curl -LsSf https://astral.sh/uv/$UV_VERSION/install.sh | sh
 
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
