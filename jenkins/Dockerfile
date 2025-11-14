@@ -55,7 +55,7 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
 #    sam --version
 
 # Install uv
-RUN curl -LsSf https://astral.sh/uv/$UV_VERSION/install.sh | sh
+RUN curl -LsSf https://astral.sh/uv/$UV_VERSION/install.sh | UV_INSTALL_DIR=/usr/local/bin sh
 
 # Install Jenkins
 RUN mkdir -p $JENKINS_HOME &&\
