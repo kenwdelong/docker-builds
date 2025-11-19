@@ -38,12 +38,13 @@ RUN mkdir -p $MAVEN_HOME  && \
     tar -xf "$MAVEN_TMP_FILE" --directory="$MAVEN_HOME" --strip-components 1  && \
     rm $MAVEN_TMP_FILE
 
-# Install Ansible, AWS-CLI, Boto (AWS lib in Python)
+# Install Ansible, AWS-CLI, Boto (AWS lib in Python), just
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     python${PYTHON_VERSION} $GET_PIP_FILE &&\
     pip${PYTHON_VERSION} install ansible==$ANSIBLE_VERSION &&\
     pip${PYTHON_VERSION} install awscli &&\
     pip${PYTHON_VERSION} install boto boto3 botocore &&\
+    pip${PYTHON_VERSION} install rust-just &&\
     rm -f $GET_PIP_FILE &&\
     rm -rf /tmp/pip_build_root
 
