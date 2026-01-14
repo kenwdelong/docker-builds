@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.description="Container with Java, Jenkins, Maven,
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
 # Python https://docs.aws.amazon.com/linux/al2023/ug/python.html
 # Ansible 10.2.0 requires Python 3.10 or greater
-ENV MAVEN_VERSION=3.9.11 \
+ENV MAVEN_VERSION=3.9.12 \
     ANSIBLE_VERSION=12.1.0 \
     JENKINS_VERSION=2.528.1 \
     PYTHON_VERSION=3.11 \
@@ -27,9 +27,9 @@ ENV MAVEN_VERSION=3.9.11 \
 RUN  mv /etc/localtime /etc/localtime.bak && ln -s /usr/share/zoneinfo/${JENKINS_TIMEZONE} /etc/localtime
     
 # Install extra packages
-RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python${PYTHON_VERSION}-devel libffi-devel openssl-devel unzip net-tools procps-ng python${PYTHON_VERSION} &&\
+RUN dnf -y install dejavu-sans-fonts fontconfig git wget gcc python${PYTHON_VERSION}-devel libffi-devel openssl-devel unzip net-tools procps-ng python${PYTHON_VERSION} libatomic &&\
     dnf clean all &&\
-    rm -rf /var/cache/yum
+    rm -rf /var/cache/dnf /var/cache/yum
 
 # Install Maven  
 RUN mkdir -p $MAVEN_HOME  && \
@@ -66,7 +66,7 @@ RUN mkdir -p $JENKINS_HOME &&\
 
 # Jenkins' home is in /jenkins
 
-ENV PATH $MAVEN_HOME/bin:$PATH
+ENV PATH=$MAVEN_HOME/bin:$PATH
 
 EXPOSE 8080
 
