@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.description="Container with Java, Jenkins, Maven,
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
 # Python https://docs.aws.amazon.com/linux/al2023/ug/python.html
 # Ansible 10.2.0 requires Python 3.10 or greater
-ENV MAVEN_VERSION=3.9.13 \
+ENV MAVEN_VERSION=3.9.12 \
     ANSIBLE_VERSION=13.3.0 \
     JENKINS_VERSION=2.541.1 \
     PYTHON_VERSION=3.13 \
