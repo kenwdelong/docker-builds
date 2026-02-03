@@ -14,7 +14,8 @@ ENV WORK="/work" \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
-RUN dnf -y install bash-completion less mariadb1011-client-utils openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip python${PYTHON_VERSION} 
+RUN dnf -y update &&\ 
+    dnf -y install bash-completion less mariadb1011-client-utils openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip python${PYTHON_VERSION} 
 
 # system version
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python${PYTHON_SYSTEM_VERSION} get-pip.py
