@@ -1,14 +1,10 @@
-FROM amazonlinux:2023.10.20260105.0   
-LABEL maintainer="Ken DeLong <kenwdelong@gmail.com>"
-LABEL org.opencontainers.image.source="https://github.com/kenwdelong/docker-builds/tree/master/ansible"
+FROM amazonlinux:2023.10.20260330.0   
+LABEL maintainer="Hatch Engineering <ops@hatch.co>"
+LABEL org.opencontainers.image.source="https://github.com/hatch-baby/docker-builds"
 LABEL org.opencontainers.image.description="Custom Python container for Ansible + MySQL tasks"
 
-#RUN dnf -y install glibc-locale-source glibc-langpack-en  &&\
-#    localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
-# We used to have the locale as en_US.UTF-8, but that is not working.  The localedef call above works on an EC2 instance with Amazon Linux 2023, but not in the docker image.
-
 ENV WORK="/work" \
-    ANSIBLE_VERSION=13.3.0 \
+    ANSIBLE_VERSION=13.6.0 \
     PYTHON_VERSION=3.13 \
     PYTHON_SYSTEM_VERSION=3.9 \
     LANG=C.UTF-8 \
@@ -18,7 +14,7 @@ RUN dnf -y update &&\
     dnf -y install bash-completion less mariadb1011-client-utils openssh openssh-clients openssl openssl-pkcs11 sudo wget zip unzip python${PYTHON_VERSION} 
 
 # system version
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python${PYTHON_SYSTEM_VERSION} get-pip.py
+RUN curl https://bootstrap.pypa.io/pip/3.9/get-pip.py -o get-pip.py && python${PYTHON_SYSTEM_VERSION} get-pip.py
 
 # install boto for both system python and modern python
 # add packaging to stop error in ansible route53 module
