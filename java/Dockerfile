@@ -3,8 +3,8 @@ FROM amazonlinux:2023.10.20260330.0
 # Using the above image, which does not match all.yml, because that's the closest tag available
 # Tags are here: https://hub.docker.com/_/amazonlinux/tags
 
-LABEL maintainer="Hatch Engineering <ops@hatch.co>"
-LABEL org.opencontainers.image.source="https://github.com/hatch-baby/docker-builds"
+LABEL maintainer="Ken DeLong <kenwdelong@gmail.com>"
+LABEL org.opencontainers.image.source="https://github.com/kenwdelong/docker-builds"
 LABEL org.opencontainers.image.description="Container with Azul Zulu Java"
 
 ENV JAVA_VERSION=25.0.3 \

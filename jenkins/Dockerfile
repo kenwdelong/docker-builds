@@ -1,7 +1,7 @@
-FROM 966878126306.dkr.ecr.us-west-2.amazonaws.com/java:java-25.0.3
+FROM kenwdelong/java:java-25.0.3
 
-LABEL maintainer="Hatch Engineering <ops@hatch.co>"
-LABEL org.opencontainers.image.source="https://github.com/hatch-baby/docker-builds"
+LABEL maintainer="Ken DeLong <kenwdelong@gmail.com>"
+LABEL org.opencontainers.image.source="https://github.com/kenwdelong/docker-builds"
 LABEL org.opencontainers.image.description="Container with Java, Jenkins, Maven, and Ansible"
 
 # Version
