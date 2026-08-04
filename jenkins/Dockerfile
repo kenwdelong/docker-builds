@@ -1,4 +1,4 @@
-FROM 966878126306.dkr.ecr.us-west-2.amazonaws.com/java:java-25.0.3
+FROM 966878126306.dkr.ecr.us-west-2.amazonaws.com/java:java-25.0.4
 
 LABEL maintainer="Hatch Engineering <ops@hatch.co>"
 LABEL org.opencontainers.image.source="https://github.com/hatch-baby/docker-builds"
@@ -8,11 +8,11 @@ LABEL org.opencontainers.image.description="Container with Java, Jenkins, Maven,
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
 # Python https://docs.aws.amazon.com/linux/al2023/ug/python.html
 # Ansible 10.2.0 requires Python 3.10 or greater
-ENV MAVEN_VERSION=3.9.15 \
-    ANSIBLE_VERSION=13.6.0 \
-    JENKINS_VERSION=2.555.1 \
-    PYTHON_VERSION=3.13 \
-    UV_VERSION=0.11.8 \
+ENV MAVEN_VERSION=3.9.16 \
+    ANSIBLE_VERSION=14.2.0 \
+    JENKINS_VERSION=2.568.1 \
+    PYTHON_VERSION=3.14 \
+    UV_VERSION=0.12.1 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
