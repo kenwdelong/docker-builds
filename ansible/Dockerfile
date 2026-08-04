@@ -1,11 +1,11 @@
-FROM amazonlinux:2023.10.20260330.0   
+FROM amazonlinux:2023.12.20260706.1   
 LABEL maintainer="Hatch Engineering <ops@hatch.co>"
 LABEL org.opencontainers.image.source="https://github.com/hatch-baby/docker-builds"
 LABEL org.opencontainers.image.description="Custom Python container for Ansible + MySQL tasks"
 
 ENV WORK="/work" \
-    ANSIBLE_VERSION=13.6.0 \
-    PYTHON_VERSION=3.13 \
+    ANSIBLE_VERSION=14.2.0 \
+    PYTHON_VERSION=3.14 \
     PYTHON_SYSTEM_VERSION=3.9 \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
