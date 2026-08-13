@@ -1,4 +1,4 @@
-FROM kenwdelong/java:java-25.0.3
+FROM kenwdelong/java:java-25.0.4
 
 LABEL maintainer="Ken DeLong <kenwdelong@gmail.com>"
 LABEL org.opencontainers.image.source="https://github.com/kenwdelong/docker-builds"
@@ -8,11 +8,11 @@ LABEL org.opencontainers.image.description="Container with Java, Jenkins, Maven,
 # Look here for jenkins http://mirrors.jenkins.io/war-stable/
 # Python https://docs.aws.amazon.com/linux/al2023/ug/python.html
 # Ansible 10.2.0 requires Python 3.10 or greater
-ENV MAVEN_VERSION=3.9.15 \
-    ANSIBLE_VERSION=13.6.0 \
-    JENKINS_VERSION=2.555.1 \
-    PYTHON_VERSION=3.13 \
-    UV_VERSION=0.11.8 \
+ENV MAVEN_VERSION=3.9.16 \
+    ANSIBLE_VERSION=14.2.0 \
+    JENKINS_VERSION=2.568.1 \
+    PYTHON_VERSION=3.14 \
+    UV_VERSION=0.12.1 \
     MAVEN_HOME=/usr/local/maven \
     MAVEN_TMP_FILE=/tmp/maven.tar.gz \
     JENKINS_INSTALL=/usr/local/jenkins/bin \
@@ -38,22 +38,20 @@ RUN mkdir -p $MAVEN_HOME  && \
     tar -xf "$MAVEN_TMP_FILE" --directory="$MAVEN_HOME" --strip-components 1  && \
     rm $MAVEN_TMP_FILE
 
-# Install Ansible, AWS-CLI, Boto (AWS lib in Python), just
+# Install Ansible, Boto (AWS lib in Python), just
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "$GET_PIP_FILE" &&\
     python${PYTHON_VERSION} $GET_PIP_FILE &&\
     pip${PYTHON_VERSION} install ansible==$ANSIBLE_VERSION &&\
-    pip${PYTHON_VERSION} install awscli &&\
     pip${PYTHON_VERSION} install boto boto3 botocore &&\
     pip${PYTHON_VERSION} install rust-just &&\
     rm -f $GET_PIP_FILE &&\
     rm -rf /tmp/pip_build_root
 
-## Install AWS SAM CLI using zip file from the latest release
-#RUN curl -Lo /tmp/aws-sam-cli-linux-x86_64.zip https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip && \
-#    unzip /tmp/aws-sam-cli-linux-x86_64.zip -d /tmp/sam-install && \
-#    /tmp/sam-install/install --update --bin-dir /usr/local/bin --install-dir /usr/local/aws-sam-cli && \
-#    rm -rf /tmp/aws-sam-cli-linux-x86_64.zip /tmp/sam-install && \
-#    sam --version
+# Install AWS CLI v2
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip &&\
+    unzip /tmp/awscliv2.zip -d /tmp &&\
+    /tmp/aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update &&\
+    rm -rf /tmp/awscliv2.zip /tmp/aws
 
 # Install uv
 RUN curl -LsSf https://astral.sh/uv/$UV_VERSION/install.sh | UV_INSTALL_DIR=/usr/local/bin sh
