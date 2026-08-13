@@ -1,6 +1,6 @@
 FROM amazonlinux:2023.12.20260706.1   
-LABEL maintainer="Hatch Engineering <ops@hatch.co>"
-LABEL org.opencontainers.image.source="https://github.com/hatch-baby/docker-builds"
+LABEL maintainer="Ken DeLong <kenwdelong@gmail.com>"
+LABEL org.opencontainers.image.source="https://github.com/kenwdelong/docker-builds"
 LABEL org.opencontainers.image.description="Custom Python container for Ansible + MySQL tasks"
 
 ENV WORK="/work" \
